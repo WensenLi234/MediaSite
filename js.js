@@ -1,5 +1,5 @@
 async function getData() {
-    let data = {
+    data = {
         users: [],
         posts: [],
         comments: [],
@@ -7,10 +7,20 @@ async function getData() {
         todos: [],
         albums: [],
     };
-    fetch("https://jsonplaceholder.typicode.com/users")
-    .then(response => response.json())
-    .then(data.users.concat(response));
+    
+    keys = Object.keys(data);
+    keys.forEach(key => {
+        fetch(`https://jsonplaceholder.typicode.com/${key}`)
+        .then(response => {
+            response = response.json().then(response => {
+                data[key] = data[key].concat(response);
+            })
+        });
+    })
 }
 
 getData()
-.then(console.log());
+.then(() => {
+    console.log(data);
+    
+});
