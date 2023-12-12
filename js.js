@@ -1,3 +1,9 @@
+let boxes = {
+    users: document.getElementById("users"),
+    posts: document.getElementById("posts"),
+    albums: document.getElementById("albums"),
+    todos: document.getElementById("todos"),
+}
 async function getData() {
     data = {
         users: [],
@@ -22,5 +28,9 @@ async function getData() {
 getData()
 .then(() => {
     console.log(data);
-    
+    boxes.forEach(box => {
+        data[box.id].forEach(item => {
+            
+        })
+    })
 });
